@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html lang="nl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Jouw Naam | Creatief & UX Designer</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;900&display=swap" rel="stylesheet">
+</head>
+<body>
+<div class="background-spotlight"></div>
+    <!-- STRAKKE EN MODERNE NAVIGATIE -->
+    <nav class="glass-nav">
+        <ul>
+            <li><a href="#home">Home</a></li>
+            <li><a href="#about">Over Mij</a></li>
+            <li><a href="#work">Werk</a></li>
+            <li><a href="#talents">Talenten</a></li>
+            <li><a href="#contact">Contact</a></li>
+            <div class="glass-glider"></div>
+        </ul>
+    </nav>
+
+    <!-- Hero Sectie -->
+<!-- NIEUWE, CORRECTE VERSIE -->
+<header class="hero" id="home"> <!-- "content-section" is hier weggehaald -->
+    <!-- HIER KOMT DE P5.JS ANIMATIE -->
+    <div id="p5-hero-background"></div>
+    <!-- "content-section" is hier toegevoegd om alleen de tekst te centreren -->
+    <div class="hero-content content-section">
+        <h1 class="hero-title">
+            <span>C</span><span>r</span><span>e</span><span>a</span><span>t</span><span>i</span><span>e</span><span>f</span><span> </span><span>D</span><span>e</span><span>s</span><span>i</span><span>g</span><span>n</span><span>,</span><br><span>I</span><span>n</span><span>t</span><span>u</span><span>ï</span><span>t</span><span>i</span><span>e</span><span>v</span><span>e</span><span> </span><span>E</span><span>r</span><span>v</span><span>a</span><span>r</span><span>i</span><span>n</span><span>g</span><span>e</span><span>n</span>
+        </h1>
+        <p class="hero-subtitle">Ik ben Emma de Heer, een grafisch en UX designer die merken helpt te groeien met doordacht en meeslepend design.</p>
+        <a href="#work" class="cta-button">Ontdek mijn werk</a>
+    </div>
+</header>
+
+    <main>
+<!-- NIEUWE VERSIE -->
+<!-- NIEUWE, SIMPELERE 'OVER MIJ' SECTIE -->
+<section id="about" class="about-section content-section">
+    <h2 class="fade-in">Over Mij</h2>
+    <div class="about-content fade-in">
+        <div class="about-photo-container">
+            <!-- De geanimeerde lijnen -->
+            <span class="orbit-line line-1"></span>
+            <span class="orbit-line line-2"></span>
+            
+            <!-- Jouw foto -->
+            <img src="https://via.placeholder.com/250x250.png/0A0A0A/FFFFFF?text=Jouw+Foto" alt="Een profielfoto van [Jouw Naam]" class="about-photo">
+        </div>
+        <div class="about-text">
+            <p>Mijn passie ligt op het snijvlak van esthetiek en functionaliteit. Ik geloof dat goed design niet alleen mooi is, maar ook problemen oplost en gebruikers blij maakt. Met een scherp oog voor detail en een strategische aanpak, transformeer ik complexe ideeën naar heldere en gebruiksvriendelijke designs die een blijvende indruk achterlaten.</p>
+        </div>
+    </div>
+</section>
+
+        <!-- Portfolio Sectie -->
+        <section id="work" class="work-section content-section">
+            <h2 class="fade-in">Uitgelicht Werk</h2>
+            <div class="portfolio-grid">
+                <a href="#" class="project-item fade-in">
+                    <img src="https://via.placeholder.com/600x400.png/0A0A0A/00F0A8?text=Project+1" alt="Omschrijving van project 1">
+                    <div class="project-overlay"><div class="project-info"><h3>Branding Concept</h3><span>UI/UX Design</span></div></div>
+                </a>
+                <a href="#" class="project-item fade-in">
+                    <img src="https://via.placeholder.com/600x400.png/0A0A0A/00F0A8?text=Project+2" alt="Omschrijving van project 2">
+                     <div class="project-overlay"><div class="project-info"><h3>Web Applicatie</h3><span>Web Design</span></div></div>
+                </a>
+                <a href="#" class="project-item fade-in">
+                    <img src="https://via.placeholder.com/600x400.png/0A0A0A/00F0A8?text=Project+3" alt="Omschrijving van project 3">
+                     <div class="project-overlay"><div class="project-info"><h3>Mobile App</h3><span>App Design</span></div></div>
+                </a>
+                <a href="#" class="project-item fade-in">
+                    <img src="https://via.placeholder.com/600x400.png/0A0A0A/00F0A8?text=Project+4" alt="Omschrijving van project 4">
+                     <div class="project-overlay"><div class="project-info"><h3>Visuele Identiteit</h3><span>Branding</span></div></div>
+                </a>
+            </div>
+        </section>
+
+        <!-- Talenten Sectie -->
+        <section id="talents" class="talents-section content-section">
+            <h2 class="fade-in">Mijn Talenten</h2>
+            <div class="talents-grid">
+                <div class="talent-card fade-in">
+                    <h3>UI/UX Design</h3>
+                    <p>Creëren van intuïtieve en esthetisch verbluffende interfaces voor websites en apps.</p>
+                </div>
+                <div class="talent-card fade-in">
+                    <h3>Branding & Identiteit</h3>
+                    <p>Ontwikkelen van krachtige, visuele identiteiten die een onvergetelijk merkverhaal vertellen.</p>
+                </div>
+                <div class="talent-card fade-in">
+                    <h3>Interactief Prototyping</h3>
+                    <p>Vliegensvlug omzetten van ideeën naar interactieve, testbare prototypes in Figma.</p>
+                </div>
+                 <div class="talent-card fade-in">
+                    <h3>Creative Direction</h3>
+                    <p>Strategisch meedenken over de visuele koers en digitale ervaring van een merk of product.</p>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <!-- Footer -->
+    <footer id="contact" class="footer content-section">
+        <div class="footer-content fade-in">
+            <h2>Klaar om iets moois te creëren?</h2>
+            <p>Ik sta altijd open voor nieuwe uitdagingen en samenwerkingen. Laten we praten!</p>
+            <a href="mailto:jouwemail@voorbeeld.com" class="email-link">Stuur mij een e-mail</a>
+        </div>
+        <div class="footer-bottom fade-in">
+             <div class="footer-socials">
+                <a href="#" target="_blank">LinkedIn</a>
+                <a href="#" target="_blank">Dribbble</a>
+                <a href="#" target="_blank">Behance</a>
+            </div>
+            <p>© 2024 [Jouw Naam] | Design & Code met Passie</p>
+        </div>
+    </footer>
+
+    <!-- SCRIPTS -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/1.9.0/p5.min.js"></script>
+    <script src="script.js"></script> <!-- Jouw originele script als laatste -->
+    <script src="sketch.js"></script>
+
+</body>
+</html>
