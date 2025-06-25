@@ -56,14 +56,24 @@
 <section id="about" class="about-section content-section">
     <h2 class="fade-in">Over Mij</h2>
     <div class="about-content fade-in">
-        <div class="about-photo-container">
-            <!-- De geanimeerde lijnen -->
-            <span class="orbit-line line-1"></span>
-            <span class="orbit-line line-2"></span>
+        <!-- NIEUWE STRUCTUUR MET ORGANISCHE LIJNEN -->
+<div class="about-photo-container fade-in">
+    <!-- De nieuwe geanimeerde lijnen -->
+    <div class="photo-background-lines">
+        <svg viewBox="0 0 220 220" preserveAspectRatio="xMidYMid meet">
+            <!-- DEZE REGEL IS NIEUW -->
+            <path class="photo-line-main" d="M 110 5 A 105 105 0 0 1 110 215 A 105 105 0 0 1 110 5 Z"></path>
             
-            <!-- Jouw foto -->
-            <img src="images/Aboutme.jpg" alt="Een profielfoto van [Jouw Naam]" class="about-photo">
-        </div>
+            <!-- De bestaande lijnen -->
+            <path class="photo-line-1" d="M 210 110 A 100 100 0 1 1 10 110 A 100 100 0 1 1 210 110" transform="rotate(15, 110, 110)"></path>
+            <path class="photo-line-2" d="M 200 110 C 200 160, 20 160, 20 110 S 200 60, 200 110" transform="rotate(-30, 110, 110)"></path>
+            <path class="photo-line-3" d="M 190 110 A 80 80 0 1 1 30 110 A 80 80 0 1 1 190 110" transform="rotate(50, 110, 110)"></path>
+        </svg>
+    </div>
+    
+    <!-- Jouw foto blijft hier ongewijzigd -->
+    <img src="images/Aboutme.jpg" alt="Een profielfoto van Emma de Heer" class="about-photo">
+</div>
         <div class="about-text">
             <p>Voor mij is design de perfecte brug tussen wat mooi is en wat werkt. Het gaat niet alleen om een aantrekkelijk plaatje, maar om het creëren van een ervaring die logisch aanvoelt en een glimlach op het gezicht van de gebruiker tovert. Ik duik diep in complexe uitdagingen om ze te vertalen naar intuïtieve, heldere oplossingen die mensen écht verder helpen.</p>
         </div>
