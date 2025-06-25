@@ -426,20 +426,22 @@ h2 {
 .card {
   width: 190px;
   height: 254px;
-  background: #171717;
+  background: var(--surface); /* Gebruik de variabele voor consistentie */
   display: flex;
   justify-content: center;
   align-items: center;
   overflow: hidden;
   position: relative;
-  box-shadow: 0px 0px 3px 1px #00000088;
+  /* box-shadow is weg, vervangen door een subtiele rand */
+  border: 1px solid rgba(255, 255, 255, 0.1); /* <-- DEZE REGEL IS NIEUW */
   cursor: pointer;
-  border-radius: 16px; /* <-- DEZE REGEL IS NIEUW */
+  border-radius: 16px;
+  transition: border-color 0.3s ease; /* Vloeiende overgang voor de rand */
 }
 
 .card .content {
-  border-radius: 5px;
-  background: #171717;
+  border-radius: 14px;
+  background: var(--surface); /* Gebruik de variabele voor consistentie */
   width: 186px;
   height: 250px;
   z-index: 1;
@@ -695,7 +697,160 @@ body.popup-open {
 .talent-card p {
     color: var(--secondary-text);
 }
+/* --- Social Icons met Tooltip in Footer --- */
+.footer-socials {
+    display: flex;
+    justify-content: center;
+    gap: 2.5rem; /* Ruimte tussen de iconen */
+    margin-bottom: 4rem; /* Extra ruimte boven de copyright tekst */
+    position: relative; /* Nodig voor de tooltips */
+    padding-top: 150px; /* Ruimte voor de tooltips om naar boven te komen */
+    margin-top: -150px; /* Compenseert de padding zodat de layout niet breekt */
+}
 
+.tooltip-container {
+  position: relative;
+  cursor: pointer;
+  transition: all 0.2s;
+  font-size: 17px;
+  border-radius: 10px;
+}
+
+.tooltip {
+  position: absolute;
+  bottom: 80px; /* Startpositie van de tooltip */
+  left: 50%;
+  transform: translateX(-50%);
+  width: max-content; /* Zorgt dat de tooltip breed genoeg is */
+  padding: 8px;
+  opacity: 0;
+  pointer-events: none;
+  transition: all 0.3s cubic-bezier(0.68, -0.55, 0.27, 1.55);
+  border-radius: 12px;
+  background: var(--surface);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.profile {
+  background: var(--background);
+  border-radius: 8px;
+  padding: 12px 16px;
+  border: 1px solid var(--accent-dark);
+}
+
+.tooltip-container:hover .tooltip {
+  bottom: 100%; /* Beweegt naar boven, net boven het icoon */
+  opacity: 1;
+  pointer-events: auto;
+}
+
+.icon {
+  text-decoration: none;
+  color: var(--primary-text);
+  display: block;
+  position: relative;
+}
+
+.layer {
+  width: 55px;
+  height: 55px;
+  transition: transform 0.3s;
+}
+
+.icon:hover .layer {
+  transform: rotate(-35deg) skew(20deg);
+}
+
+.layer span {
+  position: absolute;
+  top: 0;
+  left: 0;
+  height: 100%;
+  width: 100%;
+  border: 1px solid var(--accent);
+  border-radius: 5px;
+  transition: all 0.3s;
+}
+
+.icon:hover .layer span {
+  box-shadow: -1px 1px 3px var(--accent-glow);
+}
+
+.icon .text {
+  position: absolute;
+  left: 50%;
+  bottom: -5px;
+  opacity: 0;
+  font-weight: 600;
+  color: var(--accent);
+  transform: translateX(-50%);
+  transition: bottom 0.3s ease, opacity 0.3s ease;
+}
+
+.icon:hover .text {
+  bottom: -35px;
+  opacity: 1;
+}
+
+.icon:hover .layer span:nth-child(1) { opacity: 0.2; }
+.icon:hover .layer span:nth-child(2) { opacity: 0.4; transform: translate(5px, -5px); }
+.icon:hover .layer span:nth-child(3) { opacity: 0.6; transform: translate(10px, -10px); }
+.icon:hover .layer span:nth-child(4) { opacity: 0.8; transform: translate(15px, -15px); }
+.icon:hover .layer span:nth-child(5) { opacity: 1; transform: translate(20px, -20px); }
+
+.layer span.fab {
+  font-size: 24px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  fill: var(--accent);
+  background: var(--background);
+}
+
+.user {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.img {
+  width: 50px;
+  height: 50px;
+  font-size: 20px;
+  font-weight: 700;
+  border: 1px solid var(--accent);
+  border-radius: 10px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: var(--surface);
+  color: var(--accent);
+}
+
+.name {
+  font-size: 16px;
+  font-weight: 700;
+  color: var(--primary-text);
+}
+
+.details {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+}
+
+.username {
+    font-size: 14px;
+    color: var(--secondary-text);
+}
+
+.about {
+  color: var(--secondary-text);
+  padding-top: 8px;
+  font-size: 12px;
+  border-top: 1px solid rgba(255, 255, 255, 0.05);
+  margin-top: 8px;
+}
 /* --- Footer --- */
 .footer {
     text-align: center;
