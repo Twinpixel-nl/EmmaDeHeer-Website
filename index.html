@@ -13,9 +13,11 @@
 </head>
 <body>
     <!-- NIEUW: Logo linksboven -->
+     <ul>
     <a href="#home" class="site-logo">
         <img src="images/logo.png" alt="Emma de Heer Logo">
     </a>
+    </ul>
 
     <div class="background-spotlight"></div>
     <!-- STRAKKE EN MODERNE NAVIGATIE -->
@@ -67,28 +69,39 @@
     </div>
 </section>
 
-        <!-- Portfolio Sectie -->
-        <section id="work" class="work-section content-section">
-            <h2 class="fade-in">Uitgelicht Werk</h2>
-            <div class="portfolio-grid">
-                <a href="#" class="project-item fade-in">
-                    <img src="https://via.placeholder.com/600x400.png/0A0A0A/00F0A8?text=Project+1" alt="Omschrijving van project 1">
-                    <div class="project-overlay"><div class="project-info"><h3>Branding Concept</h3><span>UI/UX Design</span></div></div>
-                </a>
-                <a href="#" class="project-item fade-in">
-                    <img src="https://via.placeholder.com/600x400.png/0A0A0A/00F0A8?text=Project+2" alt="Omschrijving van project 2">
-                     <div class="project-overlay"><div class="project-info"><h3>Web Applicatie</h3><span>Web Design</span></div></div>
-                </a>
-                <a href="#" class="project-item fade-in">
-                    <img src="https://via.placeholder.com/600x400.png/0A0A0A/00F0A8?text=Project+3" alt="Omschrijving van project 3">
-                     <div class="project-overlay"><div class="project-info"><h3>Mobile App</h3><span>App Design</span></div></div>
-                </a>
-                <a href="#" class="project-item fade-in">
-                    <img src="https://via.placeholder.com/600x400.png/0A0A0A/00F0A8?text=Project+4" alt="Omschrijving van project 4">
-                     <div class="project-overlay"><div class="project-info"><h3>Visuele Identiteit</h3><span>Branding</span></div></div>
-                </a>
+ <!-- NIEUWE Portfolio Sectie met gloeiende kaarten -->
+<section id="work" class="work-section content-section">
+    <h2 class="fade-in">Uitgelicht Werk</h2>
+    <div class="work-cards-grid">
+    <!-- Kaart 1 -->
+    <a href="#" class="card fade-in" data-target="#popup-ux">
+        <div class="content">
+            <div>
+                <h3>UI/UX Design</h3>
+                <span>Bekijk projecten</span>
             </div>
-        </section>
+        </div>
+    </a>
+    <!-- Kaart 2 -->
+    <a href="#" class="card fade-in" data-target="#popup-branding">
+        <div class="content">
+            <div>
+                <h3>Branding</h3>
+                <span>Bekijk projecten</span>
+            </div>
+        </div>
+    </a>
+    <!-- Kaart 3 -->
+    <a href="#" class="card fade-in" data-target="#popup-apps">
+        <div class="content">
+            <div>
+                <h3>Mobile Apps</h3>
+                <span>Bekijk projecten</span>
+            </div>
+        </div>
+    </a>
+</div>
+</section>
 
         <!-- Talenten Sectie -->
         <section id="talents" class="talents-section content-section">
@@ -129,7 +142,54 @@
             </div>
             <p>© 2024 [Jouw Naam] | Design & Code met Passie</p>
         </div>
-    </footer>
+    <!-- HIER BEGINT DE POPUP CODE -->
+<div id="popup-ux" class="popup-modal">
+    <div class="popup-content">
+        <button class="popup-close">×</button>
+        <h2>UI/UX Design Projecten</h2>
+        <div class="popup-content-grid">
+            <!-- Project 1 in de popup -->
+            <a href="#" class="project-item">
+                <img src="https://via.placeholder.com/600x400.png/0A0A0A/00F0A8?text=UX+Project+A" alt="Project A">
+                <div class="project-overlay"><div class="project-info"><h3>Website Redesign</h3><span>Figma, User Research</span></div></div>
+            </a>
+            <!-- Project 2 in de popup -->
+            <a href="#" class="project-item">
+                <img src="https://via.placeholder.com/600x400.png/0A0A0A/00F0A8?text=UX+Project+B" alt="Project B">
+                <div class="project-overlay"><div class="project-info"><h3>Dashboard Interface</h3><span>UI Design, Prototyping</span></div></div>
+            </a>
+        </div>
+    </div>
+</div>
+
+<div id="popup-branding" class="popup-modal">
+    <div class="popup-content">
+        <button class="popup-close">×</button>
+        <h2>Branding Projecten</h2>
+        <div class="popup-content-grid">
+            <a href="#" class="project-item">
+                <img src="https://via.placeholder.com/600x400.png/0A0A0A/00F0A8?text=Branding+Project" alt="Project">
+                <div class="project-overlay"><div class="project-info"><h3>Visuele Identiteit</h3><span>Logo, Styleguide</span></div></div>
+            </a>
+        </div>
+    </div>
+</div>
+
+<div id="popup-apps" class="popup-modal">
+    <div class="popup-content">
+        <button class="popup-close">×</button>
+        <h2>Mobile App Projecten</h2>
+        <div class="popup-content-grid">
+            <!-- Je kunt hier meer projecten toevoegen -->
+        </div>
+    </div>
+</div>
+<!-- EINDE POPUP CODE -->
+
+<!-- Footer -->
+<footer id="contact" class="footer content-section">
+    <!-- ... je footer content ... -->
+</footer>
 
     <!-- SCRIPTS -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/1.9.0/p5.min.js"></script>

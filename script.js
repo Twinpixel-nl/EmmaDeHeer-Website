@@ -62,6 +62,64 @@ document.addEventListener('DOMContentLoaded', () => {
         glider.style.width = `${linkRect.width}px`;
         glider.style.transform = `translateX(${linkRect.left - navRect.left}px)`;
     }
+        // --- FUNCTIE 5: POPUP MODAL LOGICA ---
+    const triggerCards = document.querySelectorAll('.card[data-target]');
+    const popups = document.querySelectorAll('.popup-modal');
+    const closeButtons = document.querySelectorAll('.popup-close');
+    const body = document.body;
+
+    // Functie om een popup te openen
+    const openPopup = (popup) => {
+        if (popup) {
+            popup.classList.add('is-visible');
+            body.classList.add('popup-open');
+        }
+    };
+
+    // Functie om een popup te sluiten
+    const closePopup = (popup) => {
+        if (popup) {
+            popup.classList.remove('is-visible');
+            body.classList.remove('popup-open');
+        }
+    };
+
+    // Event listeners voor de trigger kaarten
+    triggerCards.forEach(card => {
+        card.addEventListener('click', (e) => {
+            e.preventDefault(); // Voorkom dat de pagina naar boven springt
+            const targetId = card.getAttribute('data-target');
+            const targetPopup = document.querySelector(targetId);
+            openPopup(targetPopup);
+        });
+    });
+
+    // Event listeners voor de sluitknoppen
+    closeButtons.forEach(button => {
+        button.addEventListener('click', () => {
+            const popup = button.closest('.popup-modal');
+            closePopup(popup);
+        });
+    });
+
+    // Event listener om te sluiten als je buiten de content klikt
+    popups.forEach(popup => {
+        popup.addEventListener('click', (e) => {
+            // Sluit alleen als er direct op de donkere overlay wordt geklikt
+            if (e.target === popup) {
+                closePopup(popup);
+            }
+        });
+    });
+
+    // Event listener om te sluiten met de Escape-toets
+    document.addEventListener('keydown', (e) => {
+        if (e.key === "Escape") {
+            const visiblePopup = document.querySelector('.popup-modal.is-visible');
+            closePopup(visiblePopup);
+        }
+    });
+
 
     navLinks.forEach(link => {
         link.addEventListener('click', (e) => {

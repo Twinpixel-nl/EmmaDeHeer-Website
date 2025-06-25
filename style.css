@@ -59,6 +59,29 @@ body {
     
 }
 
+.site-logo ul {
+    display: flex;
+    position: relative;
+    background: #101413; 
+    border-radius: 50px;
+    border: 1px solid rgba(255, 255, 255, 0.08);
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+    padding: 5px;
+    list-style: none;
+}
+.site-logo a {
+    display: block;
+    padding: 0.7rem 1.6rem;
+    font-size: 14px;
+    font-weight: 600;
+    color: var(--secondary-text);
+    position: relative;
+    z-index: 2;
+    transition: color 0.4s ease;
+    text-decoration: none;
+    white-space: nowrap;
+}
+
 .site-logo img {
     width: 60px; /* Logo is nu groter */
     height: auto;
@@ -371,12 +394,175 @@ h2 {
         gap: 2rem;
     }
 }
-/* --- Portfolio Sectie --- */
-.portfolio-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
-    gap: 2.5rem;
+.card {
+  width: 190px;
+  height: 254px;
+  background: #171717;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  overflow: hidden;
+  position: relative;
+  box-shadow: 0px 0px 3px 1px #00000088;
+  cursor: pointer;
 }
+
+.card .content {
+  border-radius: 5px;
+  background: #171717;
+  width: 186px;
+  height: 250px;
+  z-index: 1;
+  padding: 20px;
+  color: white;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.content::before {
+  opacity: 0;
+  transition: opacity 300ms;
+  content: " ";
+  display: block;
+  background: white;
+  width: 5px;
+  height: 50px;
+  position: absolute;
+  filter: blur(50px);
+  overflow: hidden;
+}
+
+.card:hover .content::before {
+  opacity: 1;
+}
+
+.card::before {
+  opacity: 0;
+  content: " ";
+  position: absolute;
+  display: block;
+  width: 80px;
+  height: 360px;
+  background: linear-gradient( #00f0a8, #ffffff);
+  transition: opacity 300ms;
+  animation: rotation_9018 8000ms infinite linear;
+  animation-play-state: paused;
+}
+
+.card:hover::before {
+  opacity: 1;
+  animation-play-state: running;
+}
+
+.card::after {
+  position: absolute;
+  content: " ";
+  display: block;
+  width: 250px;
+  height: 360px;
+  background: #17171733;
+  backdrop-filter: blur(50px);
+}
+/* --- Layout voor de werk kaarten --- */
+.work-cards-grid {
+    display: flex;
+    justify-content: center; /* Centreert de groep kaarten horizontaal */
+    flex-wrap: wrap;         /* Zorgt dat kaarten op kleine schermen onder elkaar springen */
+    gap: 2rem;               /* Voegt ruimte toe tussen de kaarten */
+}
+@keyframes rotation_9018 {
+  0% {
+    transform: rotate(0deg);
+  }
+
+  100% {
+    transform: rotate(360deg);
+  }
+}
+
+/* --- Popup / Modal Styling --- */
+body.popup-open {
+    overflow: hidden; /* Voorkomt scrollen van de achtergrondpagina */
+}
+
+.popup-modal {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.7);
+    z-index: 2000;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity 0.4s ease;
+}
+
+.popup-modal.is-visible {
+    opacity: 1;
+    pointer-events: all;
+}
+
+.popup-content {
+    /* De 'Glass' stijl, net als de navigatiebalk */
+    background: rgba(16, 20, 19, 0.8); /* Gebaseerd op --surface met transparantie */
+    backdrop-filter: blur(15px);
+    -webkit-backdrop-filter: blur(15px);
+    border: 1px solid rgba(255, 255, 255, 0.08);
+    border-radius: 24px;
+    box-shadow: 0 10px 40px rgba(0, 0, 0, 0.3);
+
+    position: relative;
+    padding: 3rem;
+    width: 90%;
+    max-width: 900px;
+    max-height: 85vh;
+    overflow-y: auto;
+
+    /* Animatie voor het verschijnen */
+    transform: scale(0.95);
+    transition: all 0.4s ease;
+}
+
+.popup-modal.is-visible .popup-content {
+    transform: scale(1);
+}
+
+.popup-close {
+    position: absolute;
+    top: 1.5rem;
+    right: 1.5rem;
+    background: transparent;
+    border: none;
+    color: var(--secondary-text);
+    font-size: 2.5rem;
+    line-height: 1;
+    cursor: pointer;
+    transition: color 0.3s ease, transform 0.3s ease;
+}
+
+.popup-close:hover {
+    color: var(--primary-text);
+    transform: rotate(90deg);
+}
+
+.popup-content h2 {
+    text-align: left;
+    margin-top: 0;
+    margin-bottom: 2rem;
+}
+
+.popup-content-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 1.5rem;
+}
+
+/* We hergebruiken de .project-item styling. Zorg dat die nog in je CSS staat! */
 .project-item {
     position: relative;
     display: block;
@@ -428,7 +614,6 @@ h2 {
     color: var(--accent);
     font-weight: 600;
 }
-
 /* --- Talenten Sectie --- */
 .talents-grid {
     display: grid;
