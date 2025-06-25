@@ -68,6 +68,23 @@ document.addEventListener('DOMContentLoaded', () => {
     const closeButtons = document.querySelectorAll('.popup-close');
     const body = document.body;
 
+        // --- FUNCTIE 6: ACHTERGRONDLIJNEN ANIMEREN ---
+    const animatedBackgrounds = document.querySelectorAll('.section-background-lines');
+
+    if (animatedBackgrounds.length > 0) {
+        const backgroundObserver = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('is-drawing');
+                    backgroundObserver.unobserve(entry.target); // Animatie maar één keer afspelen
+                }
+            });
+        }, {
+            threshold: 0.2 // Start als 20% van de sectie zichtbaar is
+        });
+
+        animatedBackgrounds.forEach(bg => backgroundObserver.observe(bg));
+    }
     // Functie om een popup te openen
     const openPopup = (popup) => {
         if (popup) {

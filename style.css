@@ -195,6 +195,7 @@ body {
     margin-left: auto;
     margin-right: auto;
     padding: 0 2rem; /* Ruimte aan de zijkanten op mobiel */
+    position: relative;
 }
 
 /* De hero container zelf wordt nu full-width */
@@ -646,57 +647,184 @@ body.popup-open {
     color: var(--accent);
     font-weight: 600;
 }
-/* --- Talenten Sectie --- */
-.talents-grid {
+/* --- NIEUWE Talenten Sectie: Constellaties --- */
+
+
+.talent-constellations-grid {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-    gap: 2rem;
+    grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+    gap: 2.5rem;
 }
-.talent-card {
+
+.constellation-item {
     background-color: var(--surface);
+    border: 1px solid rgba(255, 255, 255, 0.05);
     border-radius: 16px;
-    padding: 2.5rem;
+    padding: 2.5rem 2rem;
+    text-align: center;
     position: relative;
     overflow: hidden;
-    border: 1px solid rgba(255, 255, 255, 0.05);
-    transition: transform 0.3s ease;
+    transition: all 0.3s ease;
 }
-.talent-card::before {
-    content: '';
+
+.constellation-line {
     position: absolute;
-    top: 0; right: 0; bottom: 0; left: 0;
-    background: conic-gradient(from 180deg at 50% 50%, #00f0a8, #00c78c, #00f0a8, #8affd9, #00f0a8);
-    background-size: 200% 200%;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 70px;
     z-index: 0;
-    opacity: 0;
-    transition: opacity 0.5s ease;
-    animation: aurora-border 6s linear infinite;
+    fill: none;
+    stroke: var(--accent);
+    stroke-width: 1.5px;
+    stroke-linecap: round;
+    /* Magie voor de animatie */
+    stroke-dasharray: 210; /* Geschatte lengte van de path */
+    stroke-dashoffset: 210;
 }
-.talent-card:hover::before {
+
+/* NIEUWE styling voor de organische lijnen */
+@keyframes draw-line {
+    to {
+        stroke-dashoffset: 0;
+    }
+}
+
+.constellation-lines {
+    position: absolute;
+    top: -5px; /* Iets hoger voor betere positionering */
+    left: 0;
+    width: 100%;
+    height: 80px;
+    z-index: 0;
+    opacity: 0.5; /* Maakt de lijnen subtieler */
+    transition: opacity 0.3s ease;
+}
+
+.constellation-lines svg {
+    overflow: visible;
+}
+
+.constellation-lines path {
+    fill: none;
+    /* Subtiele grijze kleur, net als in je voorbeeld */
+    stroke: var(--secondary-text); 
+    stroke-width: 2px;
+    stroke-linecap: round;
+    /* Animatie setup */
+    stroke-dasharray: 300; /* Een veilige, grote waarde voor alle paden */
+    stroke-dashoffset: 300;
+    transition: stroke 0.3s ease;
+}
+
+/* De animatie start als het element in beeld komt */
+.constellation-item.is-visible .constellation-lines path {
+    animation: draw-line 2s cubic-bezier(0.65, 0, 0.35, 1) forwards;
+}
+
+/* De MAGIE: geef elke lijn een andere vertraging voor het 'staggered' effect */
+.constellation-item.is-visible .line-1 { animation-delay: 0.5s; }
+.constellation-item.is-visible .line-2 { animation-delay: 0.7s; }
+.constellation-item.is-visible .line-3 { animation-delay: 0.6s; }
+
+
+/* Extra detail: maak de lijnen groen bij hover */
+.constellation-item:hover .constellation-lines {
     opacity: 1;
 }
-.talent-card:hover {
-    transform: translateY(-5px);
+
+.constellation-item:hover .constellation-lines path {
+    stroke: var(--accent);
 }
-.talent-card h3, .talent-card p {
-    position: relative;
-    z-index: 1;
-}
-.talent-card::after {
-    content: '';
-    position: absolute;
-    top: 1px; right: 1px; bottom: 1px; left: 1px;
-    background-color: var(--surface);
-    border-radius: 15px;
-    z-index: 0;
-}
-.talent-card h3 {
-    color: var(--accent);
+
+.constellation-item h3 {
+    font-size: 1.5rem;
+    color: var(--primary-text);
     margin-bottom: 1rem;
+    position: relative;
 }
-.talent-card p {
+
+.stars-container {
+    display: flex;
+    justify-content: center;
+    gap: 0.5rem;
+    margin-bottom: 1.5rem;
+    position: relative;
+}
+
+.star {
+    width: 12px;
+    height: 12px;
+    border-radius: 50%;
+    background-color: rgba(255, 255, 255, 0.15);
+}
+
+.star.filled {
+    background-color: var(--accent);
+    box-shadow: 0 0 8px var(--accent-glow);
+}
+
+.constellation-item p {
     color: var(--secondary-text);
+    font-size: 0.95rem;
+    line-height: 1.6;
+    position: relative;
 }
+
+/* Speciale stijl voor het certificaat */
+.certificate-item {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.certificate-icon {
+    font-size: 3rem;
+    color: var(--accent);
+    line-height: 1;
+    margin-bottom: 1rem;
+    font-weight: 900;
+}
+
+/* --- Geanimeerde Achtergrondlijnen voor Secties --- */
+.section-background-lines {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: -1; /* Plaatst de lijnen ACHTER de content */
+    overflow: hidden;
+    pointer-events: none; /* SUPER BELANGRIJK: maakt de laag niet-klikbaar */
+}
+
+.section-background-lines svg {
+    width: 100%;
+    height: 100%;
+}
+
+.section-background-lines path {
+    fill: none;
+    stroke: var(--secondary-text); /* Subtiele grijze kleur */
+    stroke-width: 2px;
+    opacity: 0.15; /* Heel subtiel, niet afleidend */
+    stroke-linecap: round;
+    /* Animatie setup */
+    stroke-dasharray: 1500; /* Een veilige, grote waarde */
+    stroke-dashoffset: 1500;
+}
+
+/* De class die de animatie start */
+.section-background-lines.is-drawing path {
+    animation: draw-line 8s cubic-bezier(0.65, 0, 0.35, 1) forwards;
+}
+
+/* Geef elke lijn een andere vertraging voor een organisch effect */
+.section-background-lines.is-drawing .bg-line-1 { animation-delay: 0.5s; }
+.section-background-lines.is-drawing .bg-line-2 { animation-delay: 1.2s; }
+.section-background-lines.is-drawing .bg-line-3 { animation-delay: 0.2s; }
+.section-background-lines.is-drawing .bg-line-4 { animation-delay: 1.8s; }
 /* --- Social Icons met Tooltip in Footer --- */
 .footer-socials {
     display: flex;
