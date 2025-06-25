@@ -196,6 +196,7 @@ body {
     margin-right: auto;
     padding: 0 2rem; /* Ruimte aan de zijkanten op mobiel */
     position: relative;
+    z-index: 2; /* Zorg dat de content boven de achtergrondlagen komt */
 }
 
 /* De hero container zelf wordt nu full-width */

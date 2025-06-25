@@ -80,7 +80,7 @@ document.addEventListener('DOMContentLoaded', () => {
                 }
             });
         }, {
-            threshold: 0.2 // Start als 20% van de sectie zichtbaar is
+            threshold: 0.1 // Start als 20% van de sectie zichtbaar is
         });
 
         animatedBackgrounds.forEach(bg => backgroundObserver.observe(bg));
