@@ -46,6 +46,27 @@ body {
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
 } 
+/* --- NIEUW: Styling voor het logo --- */
+/* --- NIEUW: Styling voor het logo --- */
+.site-logo {
+    position: fixed;
+    top: 30px; /* Iets omhoog voor betere visuele centrering */
+    left: 2rem;
+    z-index: 1001; /* Hoger dan de navigatiebalk */
+    opacity: 0;
+    animation: fadeIn 1s ease 0.5s forwards;
+    transition: transform 0.3s ease;
+    
+}
+
+.site-logo img {
+    width: 60px; /* Logo is nu groter */
+    height: auto;
+}
+
+.site-logo:hover {
+    transform: scale(1.1);
+}
 
 /* --- Animaties bij Scrollen --- */
 .fade-in {
@@ -59,11 +80,13 @@ body {
 }
 
 /* --- STRAKKE EN MODERNE NAVIGATIE --- */
+/* STRAKKE EN MODERNE NAVIGATIE (AANGEPAST VOOR LOGO) */
 .glass-nav {
     position: fixed;
     top: 20px;
     left: 50%;
-    transform: translateX(-50%);
+    /* Meer verschuiving om ruimte te maken voor het grotere logo */
+    transform: translateX(calc(-50% + 50px));
     z-index: 1000;
     opacity: 0;
     animation: fadeIn 1s ease 0.5s forwards;
@@ -313,14 +336,39 @@ h2 {
 }
 
 
-/* Responsive aanpassing */
+/* --- Responsive aanpassingen --- */
 @media (max-width: 768px) {
-    .about-content {
-        flex-direction: column;
-        text-align: center;
+    h2 { font-size: 2.2rem; }
+    .content-section { padding: 6rem 1rem; }
+
+    /* Logo verbergen op mobiel om de navigatiebalk de volledige breedte te geven */
+    .site-logo {
+        display: none;
     }
-    .about-photo-container {
-        margin-bottom: 2rem; /* Ruimte tussen foto en tekst */
+    
+    .glass-nav {
+        width: 100%;
+        top: 0;
+        left: 0; /* Reset positionering voor volledige breedte */
+        transform: none; /* Reset transform */
+        border-radius: 0;
+    }
+     .glass-nav ul {
+        border-radius: 0;
+        justify-content: center;
+        width: 100%;
+        overflow-x: auto;
+        -ms-overflow-style: none;
+        scrollbar-width: none;
+     }
+    .glass-nav ul::-webkit-scrollbar {
+        display: none;
+    }
+    .glass-nav a { padding: 0.8rem 1rem; }
+    
+    .portfolio-grid {
+        grid-template-columns: 1fr;
+        gap: 2rem;
     }
 }
 /* --- Portfolio Sectie --- */
