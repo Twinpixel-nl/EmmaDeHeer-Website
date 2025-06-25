@@ -9,6 +9,35 @@
     --accent-dark: #00c78c;
     --nav-height: 70px;
 }
+/* --- Custom Scrollbar Styling --- */
+
+/* Voor Webkit browsers (Chrome, Safari, Edge, Opera) */
+body::-webkit-scrollbar {
+  width: 14px; /* Breedte van de scrollbar */
+}
+
+body::-webkit-scrollbar-track {
+  background: var(--surface); /* De achtergrond, donkergrijs/zwart */
+}
+
+body::-webkit-scrollbar-thumb {
+  background-color: var(--accent); /* De 'pil', in jouw accent-groen */
+  border-radius: 20px; /* Dit maakt hem volledig rond */
+  /* Deze rand in de kleur van de track creëert een 'padding' effect, heel strak! */
+  border: 3px solid var(--surface); 
+}
+
+body::-webkit-scrollbar-thumb:hover {
+  background-color: #33ffbe; /* Iets lichtere kleur bij hover */
+  box-shadow: 0 0 10px var(--accent-glow); /* Voegt een subtiele gloed toe */
+}
+
+/* Voor Firefox */
+/* Firefox ondersteunt minder uitgebreide styling, maar we kunnen wel de kleuren en breedte instellen. */
+body {
+  scrollbar-width: thin; /* 'auto', 'thin', of 'none' */
+  scrollbar-color: var(--accent) var(--surface); /* thumb-kleur en track-kleur */
+}
 
 /* --- Keyframe Animaties --- */
 @keyframes fadeIn {
@@ -346,14 +375,14 @@ h2 {
 /* Eerste lijn */
 .line-1 {
     border: 1px solid transparent;
-    border-top-color: rgba(0, 240, 168, 0.6); /* Geef maar 1 kant een kleur */
+    border-top-color: #00f0a8; /* Geef maar 1 kant een kleur */
     animation-duration: 15s; /* Langzamere rotatie */
 }
 
 /* Tweede lijn */
 .line-2 {
     border: 2px solid transparent;
-    border-left-color: rgba(0, 240, 168, 0.3); /* Andere kant, andere dikte/kleur */
+    border-left-color: #00f0a8; /* Andere kant, andere dikte/kleur */
     animation-duration: 25s; /* Nog langzamer, andere richting */
     animation-direction: reverse;
 }
@@ -405,6 +434,7 @@ h2 {
   position: relative;
   box-shadow: 0px 0px 3px 1px #00000088;
   cursor: pointer;
+  border-radius: 16px; /* <-- DEZE REGEL IS NIEUW */
 }
 
 .card .content {
