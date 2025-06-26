@@ -1149,27 +1149,6 @@ body.popup-open {
 .footer-brand-link:hover {
     color: var(--primary-text); /* Wordt wit bij hover voor een duidelijke interactie */
 }
-/* --- Ervaringstijdlijn Styling --- */
-.timeline-container {
-    margin-top: 8rem; /* Ruimte tussen de talent-grid en de tijdlijn */
-}
-
-.experience-timeline {
-    position: relative;
-    width: 100%;
-    max-width: 800px;
-    margin: 4rem auto 0;
-    padding: 0 1rem;
-}
-
-.timeline-line-svg {
-    position: absolute;
-    left: 50%;
-    top: 0;
-    height: 100%;
-    transform: translateX(-50%);
-    z-index: 0;
-}
 
 /* NIEUWE "DATA-STREAM" LIJN-STYLING */
 
@@ -1183,10 +1162,20 @@ body.popup-open {
         stroke-dashoffset: -100;
     }
 }
+/* ============================================= */
+/* --- Ervaringstijdlijn Styling (DEFINITIEVE FIX) --- */
+/* ============================================= */
+
+/* Keyframe voor de bewegende lijn */
+@keyframes move-dashes {
+    to {
+        stroke-dashoffset: -100;
+    }
+}
 
 .timeline-container {
     margin-top: 8rem;
-    padding-bottom: 4rem; /* Extra ruimte aan de onderkant */
+    padding-bottom: 4rem;
 }
 
 .experience-timeline {
@@ -1226,14 +1215,15 @@ body.popup-open {
     margin-bottom: 50px;
 }
 
-/* Items aan de linkerkant */
-.timeline-item:nth-child(odd) {
-    text-align: right;
-}
-
-/* Items aan de rechterkant */
+/* Items aan de rechterkant (even nummers: 2, 4, etc.) */
 .timeline-item:nth-child(even) {
     left: 50%;
+    text-align: left;
+}
+
+/* Items aan de linkerkant (oneven nummers: 1, 3, etc.) */
+.timeline-item:nth-child(odd) {
+    text-align: right;
 }
 
 .timeline-dot {
@@ -1333,7 +1323,7 @@ body.popup-open {
     margin-bottom: 0.5rem;
 }
 
-/* Standaard (rechterkant) - stip links van de tekst */
+/* Standaard (voor rechterkant-items) - stip links van de tekst */
 .timeline-skills li {
     padding-left: 1.25rem;
 }
@@ -1346,57 +1336,192 @@ body.popup-open {
     font-size: 1.2em;
 }
 
-/* DE FIX: Specifieke styling voor de linkerkant */
+/* DE FIX: Specifieke override voor linkerkant-items (odd) */
 .timeline-item:nth-child(odd) .timeline-skills li {
-    /* Reset padding-left en voeg padding-right toe */
     padding-left: 0;
     padding-right: 1.25rem;
 }
 .timeline-item:nth-child(odd) .timeline-skills li::before {
-    /* Verplaats de stip naar de rechterkant */
     left: auto;
     right: 0;
 }
 
-
 /* ============================================= */
 /* --- Responsive Tijdlijn (Mobiel) ---          */
 /* ============================================= */
+/* Deze regels moeten binnen je @media (max-width: 768px) { ... } blok */
+@media (max-width: 768px) {
+    .experience-timeline {
+        padding: 0;
+    }
+    .timeline-line-svg {
+        left: 10px;
+        transform: none;
+    }
+    .timeline-item, .timeline-item:nth-child(even) {
+        width: 100%;
+        left: 0;
+        text-align: left;
+        padding-left: 40px;
+        padding-right: 0;
+    }
+    .timeline-item:nth-child(odd) .timeline-dot, 
+    .timeline-item:nth-child(even) .timeline-dot {
+        left: 1px;
+    }
+    .timeline-item:nth-child(odd) .timeline-content::before,
+    .timeline-item:nth-child(even) .timeline-content::before {
+        left: -10px;
+        right: auto;
+        border-width: 10px 10px 10px 0;
+        border-color: transparent rgba(255, 255, 255, 0.08) transparent transparent;
+    }
+    /* Zorg dat ALLE skills op mobiel links uitgelijnd zijn met de stip ervoor */
+    .timeline-item:nth-child(odd) .timeline-skills li {
+        text-align: left; /* Zorgt dat de tekst zelf ook links uitlijnt */
+        padding-left: 1.25rem;
+        padding-right: 0;
+    }
+    .timeline-item:nth-child(odd) .timeline-skills li::before {
+        left: 0;
+        right: auto;
+    }
+}
+/* ============================================= */
+/* --- Ervaringstijdlijn Styling (ACTIEVE FOCUS) --- */
+/* ============================================= */
 
-/* Plaats dit binnen je @media (max-width: 768px) { ... } blok */
+@keyframes move-dashes {
+    to {
+        stroke-dashoffset: -100;
+    }
+}
+
+.timeline-container {
+    margin-top: 8rem;
+    padding-bottom: 4rem;
+}
+
 .experience-timeline {
-    padding: 0;
-}
-.timeline-line-svg {
-    left: 10px;
-    transform: none;
-}
-.timeline-item, .timeline-item:nth-child(even) {
+    position: relative;
     width: 100%;
-    left: 0;
+    /* AANGEPAST: Nog breder voor maximale impact */
+    max-width: 1100px; 
+    margin: 4rem auto 0;
+    padding: 0 1rem;
+}
+
+.timeline-line-svg {
+    position: absolute;
+    left: 50%;
+    top: 0;
+    height: 100%;
+    transform: translateX(-50%);
+    z-index: 0;
+}
+
+.timeline-line-svg path {
+    fill: none;
+    stroke: var(--accent);
+    stroke-width: 2px;
+    opacity: 0.4;
+    stroke-dasharray: 4 12;
+    stroke-dashoffset: 0;
+}
+
+.timeline-container.is-visible .timeline-line-svg path {
+    animation: move-dashes 2.5s linear infinite;
+}
+
+.timeline-item {
+    position: relative;
+    /* AANGEPAST: Nog breder voor een gedurfde overlap */
+    width: 60%; 
+    padding: 0 50px; /* Meer padding voor de grotere ruimte */
+    margin-bottom: 50px;
+    opacity: 0.5; /* NIEUW: Maak inactieve items subtieler */
+    transition: opacity 0.4s ease, transform 0.4s ease; /* NIEUW: Transitie voor de actieve staat */
+}
+
+/* Items aan de rechterkant */
+.timeline-item:nth-child(even) {
+    left: 40%; 
     text-align: left;
-    padding-left: 40px;
-    padding-right: 0;
 }
-.timeline-item:nth-child(odd) .timeline-dot, 
-.timeline-item:nth-child(even) .timeline-dot {
-    left: 1px;
+
+/* Items aan de linkerkant */
+.timeline-item:nth-child(odd) {
+    text-align: right;
 }
-.timeline-item:nth-child(odd) .timeline-content::before,
-.timeline-item:nth-child(even) .timeline-content::before {
-    left: -10px;
-    right: auto;
-    border-width: 10px 10px 10px 0;
-    border-color: transparent rgba(255, 255, 255, 0.08) transparent transparent;
+
+/* DE NIEUWE ACTIEVE STAAT */
+.timeline-item.is-active {
+    opacity: 1;
+    transform: scale(1.02); /* Maakt het actieve item iets groter */
 }
-/* Zorg dat de skills op mobiel altijd links uitgelijnd zijn met de stip ervoor */
-.timeline-item:nth-child(odd) .timeline-skills li {
-    padding-left: 1.25rem;
-    padding-right: 0;
+.timeline-item.is-active .timeline-content {
+    border-color: var(--accent);
+    box-shadow: 0 0 30px var(--accent-glow);
 }
-.timeline-item:nth-child(odd) .timeline-skills li::before {
-    left: 0;
-    right: auto;
+.timeline-item.is-active .timeline-dot {
+    transform: scale(1.3);
+    box-shadow: 0 0 15px var(--accent-glow);
+}
+
+
+/* De rest van de styling blijft grotendeels hetzelfde */
+.timeline-dot {
+    position: absolute;
+    top: 15px;
+    width: 18px;
+    height: 18px;
+    background: var(--surface);
+    border: 3px solid var(--accent);
+    border-radius: 50%;
+    z-index: 5;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.timeline-item:nth-child(odd) .timeline-dot { right: -9px; }
+.timeline-item:nth-child(even) .timeline-dot { left: -9px; }
+
+.timeline-content {
+    background: var(--surface);
+    border: 1px solid rgba(255, 255, 255, 0.08);
+    border-radius: 12px;
+    padding: 2rem;
+    position: relative;
+    transition: border-color 0.3s ease, box-shadow 0.3s ease;
+}
+
+/* ... de rest van de .timeline-content, .timeline-date, h3, h4, etc. blijft hetzelfde ... */
+
+.timeline-content::before, .timeline-date, .timeline-content h3, .timeline-company, .timeline-description, .timeline-content h4, .timeline-skills {
+    /* Alle regels voor deze elementen blijven ongewijzigd */
+}
+.timeline-item:nth-child(odd) .timeline-skills li, .timeline-item:nth-child(odd) .timeline-skills li::before {
+    /* De fix voor de skill-punten blijft ongewijzigd */
+}
+
+
+/* Responsive Tijdlijn (Mobiel) */
+@media (max-width: 768px) {
+    .experience-timeline { padding: 0; }
+    .timeline-line-svg { left: 10px; transform: none; }
+    .timeline-item, .timeline-item:nth-child(even) {
+        width: 100%;
+        left: 0;
+        text-align: left;
+        padding-left: 40px;
+        padding-right: 0;
+    }
+    .timeline-item {
+        opacity: 1; /* Op mobiel zijn alle items altijd volledig zichtbaar */
+    }
+    .timeline-item.is-active {
+        transform: scale(1); /* Geen schaal-effect op mobiel */
+    }
+    /* ... de rest van de media query voor de tijdlijn blijft ongewijzigd ... */
 }
 /* --- Hamburger Menu & Mobiele Navigatie --- */
 

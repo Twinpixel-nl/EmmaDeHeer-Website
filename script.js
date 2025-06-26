@@ -116,6 +116,31 @@ document.addEventListener('DOMContentLoaded', () => {
             });
         });
     }
+        // --- FUNCTIE 9: TIMELINE ACTIEVE STAAT BIJ SCROLLEN ---
+    const timelineItems = document.querySelectorAll('.timeline-item');
+
+    if (timelineItems.length > 0) {
+        const timelineObserver = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                // Voeg de 'is-active' class toe als het element in de 'hot zone' is
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('is-active');
+                } else {
+                    // Verwijder de class als het er weer uit is
+                    entry.target.classList.remove('is-active');
+                }
+            });
+        }, {
+            // De 'hot zone' is een horizontale lijn in het midden van het scherm.
+            // Een item is 'actief' als het deze lijn kruist.
+            rootMargin: "-50% 0px -50% 0px",
+            threshold: 0 // Activeert zodra ook maar 1 pixel de zone raakt
+        });
+
+        timelineItems.forEach(item => {
+            timelineObserver.observe(item);
+        });
+    }
     // Functie om een popup te sluiten
     const closePopup = (popup) => {
         if (popup) {
