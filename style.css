@@ -366,6 +366,25 @@ h2 {
     font-size: 0.95rem;
     line-height: 1.6;
 }
+.noteworthy-list li::before,
+.noteworthy-list li h4,
+.noteworthy-list li span {
+    transition: all 0.3s ease;
+}
+
+/* De daadwerkelijke hover-stijlen */
+.noteworthy-list li:hover::before {
+    width: 5px; /* Maak de streep iets breder */
+    box-shadow: 0 0 15px var(--accent-glow); /* Maak de gloed intenser */
+}
+
+.noteworthy-list li:hover h4 {
+    color: var(--accent); /* Maak de titel groen */
+}
+
+.noteworthy-list li:hover span {
+    color: var(--primary-text); /* Maak de beschrijving helderder */
+}
 .about-section {
     padding-top: 8rem;
     padding-bottom: 8rem;
