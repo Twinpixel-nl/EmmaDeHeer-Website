@@ -1398,7 +1398,111 @@ body.popup-open {
     left: 0;
     right: auto;
 }
+/* --- Hamburger Menu & Mobiele Navigatie --- */
 
+.hamburger-menu-button {
+    position: fixed;
+    top: 2rem;
+    right: 1.5rem;
+    z-index: 2001; /* Ligt boven ALLES, behalve de popup */
+    width: 40px;
+    height: 40px;
+    background: transparent;
+    border: none;
+    cursor: pointer;
+    display: none; /* Standaard verborgen op desktop */
+    padding: 0;
+}
+
+.hamburger-menu-button span {
+    display: block;
+    width: 28px;
+    height: 3px;
+    background-color: var(--primary-text);
+    border-radius: 3px;
+    margin: 5px auto;
+    transition: all 0.3s ease-in-out;
+}
+
+/* Animatie van de hamburger naar 'X' */
+.hamburger-menu-button.is-active span:nth-child(1) {
+    transform: translateY(8px) rotate(45deg);
+}
+.hamburger-menu-button.is-active span:nth-child(2) {
+    opacity: 0;
+}
+.hamburger-menu-button.is-active span:nth-child(3) {
+    transform: translateY(-8px) rotate(-45deg);
+}
+
+/* De fullscreen overlay */
+.mobile-nav-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 1500; /* Ligt boven de content, onder de knop */
+    
+    /* De 'glassmorphism' achtergrond */
+    background: rgba(5, 8, 7, 0.85); /* --background met transparantie */
+    backdrop-filter: blur(20px);
+    -webkit-backdrop-filter: blur(20px);
+    
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    /* Start buiten beeld */
+    opacity: 0;
+    pointer-events: none;
+    transform: translateY(-100%);
+    transition: transform 0.5s cubic-bezier(0.65, 0, 0.35, 1), opacity 0.5s ease;
+}
+
+.mobile-nav-overlay.is-open {
+    transform: translateY(0);
+    opacity: 1;
+    pointer-events: all;
+}
+
+.mobile-nav ul {
+    list-style: none;
+    padding: 0;
+    text-align: center;
+}
+
+.mobile-nav li {
+    margin: 1.5rem 0;
+    opacity: 0;
+    transform: translateY(20px);
+    transition: opacity 0.4s ease, transform 0.4s ease;
+}
+
+/* Animatie voor de menu-items */
+.mobile-nav-overlay.is-open .mobile-nav li {
+    opacity: 1;
+    transform: translateY(0);
+}
+/* Staggered (verspringende) animatie delay */
+.mobile-nav-overlay.is-open .mobile-nav li:nth-child(1) { transition-delay: 0.2s; }
+.mobile-nav-overlay.is-open .mobile-nav li:nth-child(2) { transition-delay: 0.25s; }
+.mobile-nav-overlay.is-open .mobile-nav li:nth-child(3) { transition-delay: 0.3s; }
+.mobile-nav-overlay.is-open .mobile-nav li:nth-child(4) { transition-delay: 0.35s; }
+.mobile-nav-overlay.is-open .mobile-nav li:nth-child(5) { transition-delay: 0.4s; }
+
+.mobile-nav a {
+    color: var(--primary-text);
+    text-decoration: none;
+    font-size: 2rem; /* Groot en duidelijk */
+    font-weight: 700;
+    padding: 0.5rem 1rem;
+    transition: color 0.3s ease;
+}
+
+.mobile-nav a:hover {
+    color: var(--accent);
+}
 /* --- Responsive aanpassingen --- */
 @media (max-width: 768px) {
     h2 { font-size: 2.2rem; }
@@ -1421,7 +1525,14 @@ body.popup-open {
         display: none;
     }
     .glass-nav a { padding: 0.8rem 1rem; }
+        .glass-nav, .site-logo {
+        display: none;
+    }
     
+    /* Toon de hamburger knop */
+    .hamburger-menu-button {
+        display: block;
+    }
     .portfolio-grid {
         grid-template-columns: 1fr;
         gap: 2rem;

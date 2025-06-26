@@ -92,7 +92,30 @@ document.addEventListener('DOMContentLoaded', () => {
             body.classList.add('popup-open');
         }
     };
+    // --- FUNCTIE 8: MOBIEL HAMBURGER MENU ---
+    const hamburgerBtn = document.querySelector('.hamburger-menu-button');
+    const mobileOverlay = document.querySelector('.mobile-nav-overlay');
+    const mobileNavLinks = document.querySelectorAll('.mobile-nav a');
+    const bodyEl = document.body;
 
+    if (hamburgerBtn && mobileOverlay) {
+        const toggleMenu = () => {
+            hamburgerBtn.classList.toggle('is-active');
+            mobileOverlay.classList.toggle('is-open');
+            bodyEl.classList.toggle('popup-open'); // Hergebruik deze class om scrollen te blokkeren
+        };
+
+        hamburgerBtn.addEventListener('click', toggleMenu);
+
+        // Sluit het menu als op een link wordt geklikt
+        mobileNavLinks.forEach(link => {
+            link.addEventListener('click', () => {
+                if (mobileOverlay.classList.contains('is-open')) {
+                    toggleMenu();
+                }
+            });
+        });
+    }
     // Functie om een popup te sluiten
     const closePopup = (popup) => {
         if (popup) {
