@@ -1078,6 +1078,17 @@ body.popup-open {
     font-size: 0.9rem;
     color: #4f5b57;
 }
+/* Styling voor de merk-link in de footer */
+.footer-brand-link {
+    color: var(--accent); /* Maakt de link groen */
+    text-decoration: none; /* Verwijdert de standaard onderstreping */
+    font-weight: 600;      /* Maakt het iets vetter, zodat het opvalt */
+    transition: color 0.3s ease;
+}
+
+.footer-brand-link:hover {
+    color: var(--primary-text); /* Wordt wit bij hover voor een duidelijke interactie */
+}
 
 /* --- Responsive aanpassingen --- */
 @media (max-width: 768px) {
