@@ -323,7 +323,49 @@ h2 {
     letter-spacing: -1px;
 }
 /* --- STYLING VOOR 'OVER MIJ' SECTIE & GEANIMEERDE FOTO --- */
+/* --- Styling voor Benoemingswaardigheden --- */
 
+.noteworthy-list {
+    list-style: none;
+    padding: 0;
+    margin: 2.5rem 0; /* Ruimte boven en onder de lijst */
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem; /* Ruimte tussen de items */
+}
+
+.noteworthy-list li {
+    padding-left: 1.5rem; /* Creëer ruimte voor de groene streep */
+    position: relative;
+}
+
+/* De verticale groene streep */
+.noteworthy-list li::before {
+    content: '';
+    position: absolute;
+    left: 0;
+    top: 4px; /* Lijn uit met de tekst */
+    width: 3.5px; /* Iets dikker voor impact */
+    height: 32px; /* Iets langer */
+    
+    /* Gebruik de gradient voor diepte */
+    background: linear-gradient(180deg, var(--accent-dark), var(--accent));
+    
+    border-radius: 3px;
+    box-shadow: 0 0 8px rgba(0, 240, 168, 0.3); /* Subtiele gloed */
+}
+
+.noteworthy-list h4 {
+    font-size: 1.1rem;
+    color: var(--primary-text);
+    margin: 0 0 0.2rem 0;
+}
+
+.noteworthy-list span {
+    color: var(--secondary-text);
+    font-size: 0.95rem;
+    line-height: 1.6;
+}
 .about-section {
     padding-top: 8rem;
     padding-bottom: 8rem;
@@ -357,13 +399,14 @@ h2 {
 
 /* --- Word Spinner Styling --- */
 
-/* De container die alles bij elkaar houdt */
+/* Bijgewerkte styling */
 .word-spinner-container {
-    margin-top: 3rem; /* Ruimte boven de spinner */
-    display: flex; /* Zet 'Ik maak:' en de spinner naast elkaar */
-    align-items: center; /* Lijn ze verticaal uit */
-    gap: 0.75rem; /* Ruimte tussen de twee elementen */
-    font-size: 1.25rem; /* Basisgrootte voor de tekst */
+    margin-top: 0; /* Geen marge meer aan de bovenkant */
+    margin-bottom: 2rem; /* Voeg een duidelijke marge aan de onderkant toe */
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+    font-size: 1.25rem;
     font-weight: 600;
 }
 
@@ -1492,15 +1535,6 @@ body.popup-open {
     padding: 2rem;
     position: relative;
     transition: border-color 0.3s ease, box-shadow 0.3s ease;
-}
-
-/* ... de rest van de .timeline-content, .timeline-date, h3, h4, etc. blijft hetzelfde ... */
-
-.timeline-content::before, .timeline-date, .timeline-content h3, .timeline-company, .timeline-description, .timeline-content h4, .timeline-skills {
-    /* Alle regels voor deze elementen blijven ongewijzigd */
-}
-.timeline-item:nth-child(odd) .timeline-skills li, .timeline-item:nth-child(odd) .timeline-skills li::before {
-    /* De fix voor de skill-punten blijft ongewijzigd */
 }
 
 
