@@ -1089,6 +1089,181 @@ body.popup-open {
 .footer-brand-link:hover {
     color: var(--primary-text); /* Wordt wit bij hover voor een duidelijke interactie */
 }
+/* --- Ervaringstijdlijn Styling --- */
+.timeline-container {
+    margin-top: 8rem; /* Ruimte tussen de talent-grid en de tijdlijn */
+}
+
+.experience-timeline {
+    position: relative;
+    width: 100%;
+    max-width: 800px;
+    margin: 4rem auto 0;
+    padding: 0 1rem;
+}
+
+.timeline-line-svg {
+    position: absolute;
+    left: 50%;
+    top: 0;
+    height: 100%;
+    transform: translateX(-50%);
+    z-index: 0;
+}
+
+/* NIEUWE "DATA-STREAM" LIJN-STYLING */
+
+/* Voeg deze nieuwe keyframe-animatie toe, bovenaan de tijdlijn-styling */
+@keyframes move-dashes {
+    to {
+        stroke-dashoffset: -100; /* Een negatieve waarde om de dashes te laten bewegen */
+    }
+}
+
+.timeline-line-svg path {
+    fill: none;
+    stroke: var(--accent); /* Maak de lijn direct groen voor meer impact */
+    stroke-width: 2px;
+    opacity: 0.4; /* Iets meer zichtbaar */
+    
+    /* DE MAGIE: maak er een gestreepte lijn van */
+    /* '4' is de lengte van de streep, '12' is de ruimte ertussen. Speel hiermee! */
+    stroke-dasharray: 4 12; 
+    
+    /* De startpositie van de animatie */
+    stroke-dashoffset: 0; 
+}
+
+/* De animatie start als de container in beeld komt */
+.timeline-container.is-visible .timeline-line-svg path {
+    /* Pas de nieuwe, oneindige animatie toe */
+    animation: move-dashes 2s linear infinite;
+}
+
+.timeline-item {
+    position: relative;
+    width: 50%;
+    padding: 0 40px;
+    margin-bottom: 50px;
+}
+
+/* Items aan de linkerkant */
+.timeline-item:nth-child(odd) {
+    text-align: right;
+}
+
+/* Items aan de rechterkant */
+.timeline-item:nth-child(even) {
+    left: 50%;
+}
+
+.timeline-dot {
+    position: absolute;
+    top: 15px; /* Lijn uit met de titel */
+    width: 18px;
+    height: 18px;
+    background: var(--surface);
+    border: 3px solid var(--accent);
+    border-radius: 50%;
+    z-index: 5;
+    transition: transform 0.3s ease;
+}
+.timeline-item:hover .timeline-dot {
+    transform: scale(1.2);
+    box-shadow: 0 0 10px var(--accent-glow);
+}
+.timeline-item:nth-child(odd) .timeline-dot { right: -9px; }
+.timeline-item:nth-child(even) .timeline-dot { left: -9px; }
+
+
+/* Het pijltje naar de tijdlijn */
+.timeline-content::before {
+    content: '';
+    position: absolute;
+    top: 18px;
+    width: 0;
+    height: 0;
+    border-style: solid;
+}
+.timeline-item:nth-child(odd) .timeline-content::before {
+    right: -10px;
+    border-width: 10px 0 10px 10px;
+    border-color: transparent transparent transparent rgba(255, 255, 255, 0.08);
+}
+.timeline-item:nth-child(even) .timeline-content::before {
+    left: -10px;
+    border-width: 10px 10px 10px 0;
+    border-color: transparent rgba(255, 255, 255, 0.08) transparent transparent;
+}
+
+.timeline-date {
+    font-size: 0.9rem;
+    color: var(--secondary-text);
+    font-weight: 600;
+}
+.timeline-content h3 {
+    color: var(--primary-text);
+    margin: 0.25rem 0;
+}
+.timeline-company {
+    color: var(--accent);
+    font-weight: 600;
+    margin-bottom: 1rem;
+}
+.timeline-description {
+    font-size: 0.95rem;
+    color: var(--secondary-text);
+    line-height: 1.6;
+}
+.timeline-content h4 {
+    margin-top: 1rem;
+    margin-bottom: 0.5rem;
+    color: var(--primary-text);
+    font-size: 1rem;
+}
+.timeline-skills {
+    list-style: none;
+    padding: 0;
+    font-size: 0.9rem;
+    color: var(--secondary-text);
+}
+.timeline-skills li {
+    padding-left: 1rem;
+    position: relative;
+    margin-bottom: 0.25rem;
+}
+.timeline-skills li::before {
+    content: '•';
+    position: absolute;
+    left: 0;
+    color: var(--accent);
+}
+/* Responsive aanpassingen voor de tijdlijn */
+.experience-timeline {
+    padding: 0; /* Verwijder horizontale padding */
+}
+.timeline-line-svg {
+    left: 10px; /* Plaats de lijn aan de linkerkant */
+    transform: none;
+}
+.timeline-item, .timeline-item:nth-child(even) {
+    width: 100%;
+    left: 0;
+    text-align: left; /* Alles links uitlijnen */
+    padding-left: 40px; /* Ruimte voor de lijn */
+    padding-right: 0;
+}
+.timeline-item:nth-child(odd) .timeline-dot, 
+.timeline-item:nth-child(even) .timeline-dot {
+    left: 1px; /* Plaats alle dots op de lijn */
+}
+.timeline-item:nth-child(odd) .timeline-content::before,
+.timeline-item:nth-child(even) .timeline-content::before {
+    left: -10px;
+    right: auto;
+    border-width: 10px 10px 10px 0;
+    border-color: transparent rgba(255, 255, 255, 0.08) transparent transparent;
+}
 
 /* --- Responsive aanpassingen --- */
 @media (max-width: 768px) {
