@@ -1681,38 +1681,140 @@ body.popup-open {
 .mobile-nav a:hover {
     color: var(--accent);
 }
-/* --- Responsive aanpassingen --- */
+/* ============================================= */
+/* --- MOBIEL & TABLET RESPONSIVE STIJLEN ---      */
+/* ============================================= */
 @media (max-width: 768px) {
-    h2 { font-size: 2.2rem; }
-    .content-section { padding: 6rem 1rem; }
-    
-    .glass-nav {
-        width: 100%;
-        top: 0;
-        border-radius: 0;
+    /* --- Globale aanpassingen --- */
+    h2 {
+        font-size: 2.5rem; /* Iets groter dan voorheen, voor impact */
     }
-     .glass-nav ul {
-        border-radius: 0;
-        justify-content: center;
-        width: 100%;
-        overflow-x: auto;
-        -ms-overflow-style: none;
-        scrollbar-width: none;
-     }
-    .glass-nav ul::-webkit-scrollbar {
-        display: none;
+    .content-section {
+        /* Minder verticale padding op mobiel */
+        padding: 5rem 1.5rem;
     }
-    .glass-nav a { padding: 0.8rem 1rem; }
-        .glass-nav, .site-logo {
-        display: none;
+
+    /* --- Navigatie: Verberg desktop nav, toon hamburger --- */
+    .glass-nav, .site-logo {
+        display: none; /* Verberg desktop nav en logo compleet */
     }
-    
-    /* Toon de hamburger knop */
     .hamburger-menu-button {
-        display: block;
+        display: block; /* Toon de hamburger knop */
+        top: 1.5rem;
+        right: 1.5rem;
     }
-    .portfolio-grid {
-        grid-template-columns: 1fr;
-        gap: 2rem;
+
+    /* --- Hero sectie --- */
+    .hero-title {
+        /* De clamp() functie werkt al goed, geen aanpassing nodig */
+        line-height: 1.2;
+    }
+    .hero-subtitle {
+        font-size: 1.1rem;
+        max-width: 90%; /* Zorg dat het niet te breed wordt */
+    }
+
+    /* --- Over Mij Sectie: Stapel de content --- */
+    .about-content {
+        flex-direction: column; /* Stapel foto boven tekst */
+        text-align: center;     /* Centreer de tekstblokken */
+        gap: 2.5rem;
+    }
+    .word-spinner-container {
+        justify-content: center; /* Centreer de "Ik maak:" spinner */
+    }
+    .noteworthy-list {
+        text-align: left; /* Hou de opsomming links uitgelijnd */
+        align-self: flex-start; /* Lijn de lijst links uit binnen de flex-container */
+        width: 100%;
+    }
+
+    /* --- Werk & Talenten Secties --- */
+    .work-cards-grid, .talent-constellations-grid {
+        gap: 1.5rem; /* Iets minder ruimte tussen de kaarten */
+    }
+    
+    /* --- Footer: Vereenvoudig social icons --- */
+    .footer-socials {
+        padding-top: 2rem; /* Verwijder de grote ruimte voor de tooltips */
+        margin-top: 0;
+        gap: 1.5rem; /* Iets minder ruimte tussen iconen */
+    }
+    .tooltip, .icon .text {
+        display: none; /* Verberg de hover-tooltips en tekst compleet */
+    }
+    .footer-socials .icon .layer {
+        width: 60px; /* Maak de tap-targets groter */
+        height: 60px;
+    }
+    
+    /* --- Popup Modal --- */
+    .popup-content {
+        width: 95%;
+        padding: 2rem 1.5rem;
+    }
+    .popup-content-grid {
+        grid-template-columns: 1fr; /* Zorg dat popup projecten altijd onder elkaar staan */
+    }
+
+    /* --- Tijdlijn: Converteer naar enkele kolom (BELANGRIJK!) --- */
+    .experience-timeline {
+        padding: 0;
+        max-width: 100%; /* Gebruik volledige breedte */
+    }
+    .timeline-line-svg {
+        /* Verplaats de centrale lijn naar links */
+        left: 20px;
+        transform: none;
+    }
+    
+    /* Pas ALLE tijdlijn items aan, negeer even/oneven logica */
+    .timeline-item, 
+    .timeline-item:nth-child(even) {
+        width: 100%;
+        left: 0;
+        text-align: left !important; /* Forceer links uitlijnen */
+        padding-left: 50px;      /* Ruimte voor de lijn en de stip */
+        padding-right: 15px;
+    }
+    
+    /* Zet alle stippen op de nieuwe lijn-positie */
+    .timeline-item .timeline-dot,
+    .timeline-item:nth-child(odd) .timeline-dot, 
+    .timeline-item:nth-child(even) .timeline-dot {
+        left: 11px; /* (20px van lijn) - (18px/2 van stip) = 11px */
+    }
+    
+    /* Pas alle pijltjes aan om naar links te wijzen */
+    .timeline-item .timeline-content::before,
+    .timeline-item:nth-child(odd) .timeline-content::before,
+    .timeline-item:nth-child(even) .timeline-content::before {
+        left: -10px;
+        right: auto;
+        border-width: 10px 10px 10px 0;
+        border-color: transparent rgba(255, 255, 255, 0.08) transparent transparent;
+    }
+    
+    /* Forceer de skills-lijst om correct uit te lijnen */
+    .timeline-item:nth-child(odd) .timeline-skills {
+        text-align: left;
+    }
+    .timeline-item:nth-child(odd) .timeline-skills li {
+        padding-left: 1.25rem;
+        padding-right: 0;
+    }
+    .timeline-item:nth-child(odd) .timeline-skills li::before {
+        left: 0;
+        right: auto;
+    }
+    
+    /* Verwijder de "actieve" schaal-animatie op mobiel, het kan schokkerig zijn */
+    .timeline-item.is-active {
+        transform: scale(1);
+    }
+    .timeline-item.is-active .timeline-content {
+        /* Hou wel de visuele feedback */
+        border-color: var(--accent);
+        box-shadow: none; /* Verwijder de gloed voor betere performance */
     }
 }
