@@ -1,0 +1,23 @@
+[build]
+  # Dit is het commando dat Astro omzet naar normale HTML
+  command = "npm run build"
+  
+  # Dit is de map waar Astro de kant-en-klare website in zet
+  publish = "dist"
+
+[build.processing]
+  # Optioneel: Netlify kan je afbeeldingen en CSS nog extra verkleinen
+  [build.processing.css]
+    bundle = true
+    minify = true
+  [build.processing.js]
+    bundle = true
+    minify = true
+  [build.processing.images]
+    compress = true
+
+[[redirects]]
+  # Dit zorgt ervoor dat als iemand een pagina ververst, Netlify niet in de war raakt
+  from = "/*"
+  to = "/index.html"
+  status = 200
