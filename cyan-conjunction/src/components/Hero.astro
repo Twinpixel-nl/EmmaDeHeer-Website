@@ -1,0 +1,32 @@
+---
+---
+<header class="hero" id="home">
+    <!-- HIER KOMT DE P5.JS ANIMATIE -->
+    <div id="p5-hero-background"></div>
+    
+    <div class="hero-content content-section">
+        <h1 class="hero-title">
+            <span>C</span><span>r</span><span>e</span><span>a</span><span>t</span><span>i</span><span>e</span><span>f</span><span>&nbsp;</span><span>D</span><span>e</span><span>s</span><span>i</span><span>g</span><span>n</span><span>,</span><br>
+            <span>I</span><span>n</span><span>t</span><span>u</span><span>ï</span><span>t</span><span>i</span><span>e</span><span>v</span><span>e</span><span>&nbsp;</span><span>E</span><span>r</span><span>v</span><span>a</span><span>r</span><span>i</span><span>n</span><span>g</span><span>e</span><span>n</span>
+        </h1>
+        <p class="hero-subtitle">Ik ben Emma de Heer, een grafisch en UX designer die merken helpt te groeien met doordacht en meeslepend design.</p>
+        <a href="#work" class="cta-button">Ontdek mijn werk</a>
+    </div>
+</header>
+
+<style>
+    /* Zorg dat de p5 container de hele hero vult en erachter staat */
+    #p5-hero-background {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        z-index: -1; /* Achter de tekst */
+        overflow: hidden;
+    }
+    .hero {
+        position: relative; /* Nodig voor de absolute positionering van de achtergrond */
+        overflow: hidden;
+    }
+</style>
