@@ -1,0 +1,12 @@
+[build]
+  # Het standaard Astro bouw-commando
+  command = "npm run build"
+  
+  # De map waar de HTML bestanden in terecht komen
+  publish = "dist"
+
+[[redirects]]
+  # Voorkomt 404's als je een pagina ververst
+  from = "/*"
+  to = "/index.html"
+  status = 200
